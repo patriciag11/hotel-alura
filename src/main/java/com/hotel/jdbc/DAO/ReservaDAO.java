@@ -109,34 +109,31 @@ public class ReservaDAO {
 		}
 	}
 
-	public void Actualizar(String fechae, String fechas, String valor, String formaPago, int id) {
-		
-		try {
-            final PreparedStatement statement = con.prepareStatement(
-                    "UPDATE PRODUCTO SET "
-            		+ "fecha_entrada =?,"
-                    + "fecha_salida=?,"
-            		+ "valor=?,"
-                    +"forma_pago=?");
+	 public void Actualizar(LocalDate fechaEntrada, LocalDate fechaSalida, String valor, String formaPago, Integer id) {
+	        try {
+	          
+	          	String sql = "UPDATE reservas SET "
+	                    + " fecha_entrada = ?, "
+	                    + " fecha_salida = ?,"
+	                    + " valor = ?,"
+	                    + " forma_pago = ?"
+	                    + " WHERE id = ?";
+	        	
+	        	final PreparedStatement statement = con.prepareStatement(sql);
 
-		
-			try (statement) {
-				
-				statement.setString(1, fechae);
-				statement.setString(2, fechas);
-				statement.setString(3, valor);
-				statement.setString(4, formaPago);
-				statement.setInt(5, id);
-			
-				statement.execute();
-				System.out.println("entrando a la base");
-			
-				} 
-			}catch (SQLException e) {
+	            try (statement) {
+	                statement.setObject(1, java.sql.Date.valueOf(fechaEntrada));
+	                statement.setObject(2, java.sql.Date.valueOf(fechaSalida));
+	                statement.setString(3, valor);
+	                statement.setString(4, formaPago);
+	                statement.setInt(5, id);
+	                statement.execute();
+	                System.out.println("modificando elemento en la base");
+	            } 
+			} catch (SQLException e) {
 				throw new RuntimeException(e);
-				}
-			
-		}  
+			}
+	    }
 	
 
 

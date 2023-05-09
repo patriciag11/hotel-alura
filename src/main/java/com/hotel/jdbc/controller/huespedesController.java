@@ -45,7 +45,9 @@ public class huespedesController {
 		return this.huespedesDAO.buscarId(id);
 	}
 
-	
+	public void Eliminar(Integer id) {
+		this.huespedesDAO.Eliminar(id);
+	}
 
 	
 	

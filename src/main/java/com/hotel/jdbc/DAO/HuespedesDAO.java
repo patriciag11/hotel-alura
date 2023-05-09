@@ -199,4 +199,25 @@ private void tranformarResultado(List<Huesped> huespedes, PreparedStatement stat
 		throw new RuntimeException(e);
 	}
 }
+
+public void Eliminar(Integer id) {
+	
+		try {
+			String sql = "DELETE FROM huespedes WHERE id = ?";
+			// try (statement) {
+			java.sql.Statement state = con.createStatement();
+			state.execute("SET FOREIGN_KEY_CHECKS=0");
+			PreparedStatement statement = con.prepareStatement(sql);
+			statement.setInt(1, id);
+			statement.execute();
+			state.execute("SET FOREIGN_KEY_CHECKS=1");
+			System.out.println("entrando a la base huesped");
+
+			// }
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
 }
+

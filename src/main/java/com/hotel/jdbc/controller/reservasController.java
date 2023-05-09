@@ -38,11 +38,9 @@ public class reservasController {
 	}
 
 	
-	
-	public void actualizarReserva(String fechae, String fechas, String valor, String formaPago, Integer id) {
-		  this.reservaDAO.Actualizar(fechae, fechas, valor, formaPago, id);
-		
-	}
+	public void actualizarReserva(LocalDate fechaEntrada, LocalDate fechaSalida, String valor, String formaPago, Integer id) {
+        this.reservaDAO.Actualizar(fechaEntrada, fechaSalida, valor, formaPago, id);
+    }
 	
 	public void Eliminar(Integer id) {
 		this.reservaDAO.Eliminar(id);
